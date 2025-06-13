@@ -41,7 +41,6 @@ fun PizzaSection(
     ) {
         Image(
             modifier = Modifier
-                //   .size(220.dp, 200.dp)
                 .size(320.dp),
             painter = painterResource(id = R.drawable.plate),
             contentDescription = "Weather Icon",
@@ -51,14 +50,11 @@ fun PizzaSection(
             state = pagerState,
             modifier = Modifier
                 .size(breadRadius)
-
-
         ) { page ->
             Image(
                 painter = painterResource(id = imagesList[page]),
                 contentDescription = "Pizza Item",
                 modifier = Modifier
-                    //.fillMaxWidth()
                     .clip(CircleShape)
             )
         }

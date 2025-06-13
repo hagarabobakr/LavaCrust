@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jetpack.pizzaovenjetpackcompose.presentation.model.PizzaSize
 
 
 @Composable
@@ -66,36 +67,40 @@ private fun PizzaSizeItem(
 
 @Composable
 fun PizzaSizesRow(
-    onSizeSelected: (String) -> Unit,
-    selectedSize: String,
+    selectedSize: PizzaSize,
+    onSizeSelected: (PizzaSize) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box {
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            listOf("S", "M", "L").forEach { size ->
-                PizzaSizeItem(
-                    onBoxSizeClick = { onSizeSelected(size) },
-                    itemText = size,
-                    isSelected = selectedSize == size
-                )
-                if (size != "L") Spacer(modifier = Modifier.width(12.dp))
-            }
+    val sizes = listOf(PizzaSize.SMALL, PizzaSize.MEDIUM, PizzaSize.LARGE)
 
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        sizes.forEach { size ->
+            PizzaSizeItem(
+                onBoxSizeClick = { onSizeSelected(size) },
+                itemText = when (size) {
+                    PizzaSize.SMALL -> "S"
+                    PizzaSize.MEDIUM -> "M"
+                    PizzaSize.LARGE -> "L"
+                },
+                isSelected = selectedSize == size
+            )
+            if (size != PizzaSize.LARGE) Spacer(modifier = Modifier.width(12.dp))
         }
     }
 }
+
 
 
 @Preview(showBackground = true)
 @Composable
 fun PizzaSizeItemPreview() {
 
-    PizzaSizesRow(
-        selectedSize = "M",
-        onSizeSelected = {}
-    )
+//    PizzaSizesRow(
+//        selectedSize = "M",
+//        onSizeSelected = {}
+//    )
 }
