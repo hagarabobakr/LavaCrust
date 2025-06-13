@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jetpack.pizzaovenjetpackcompose.presentation.model.Ingredient
 import com.jetpack.pizzaovenjetpackcompose.presentation.model.PizzaOvenUiState
+import com.jetpack.pizzaovenjetpackcompose.presentation.model.PizzaSize
 import com.jetpack.pizzaovenjetpackcompose.presentation.viewModel.PizzaOvenViewModel
 import com.jetpack.pizzaovenjetpackcompose.ui.theme.Black
 import com.jetpack.pizzaovenjetpackcompose.ui.theme.CustomYourPizzaText
@@ -47,7 +48,7 @@ fun PizzaOvenHomeScreen(viewModel: PizzaOvenViewModel = koinViewModel()) {
 @Composable
 private fun PizzaOvenHomeScreenContent(
     state: PizzaOvenUiState,
-    onSizeBoxClicked: (Size) -> Unit,
+    onSizeBoxClicked: (PizzaSize) -> Unit,
     onIngredientBoxClicked: (Ingredient) -> Unit
 ) {
     val scrollState = rememberScrollState()
